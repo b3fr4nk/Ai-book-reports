@@ -1,0 +1,28 @@
+{
+  "name": "ai-book-reports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b3fr4nk/Ai-book-reports.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b3fr4nk/Ai-book-reports/issues"
+  },
+  "homepage": "https://github.com/b3fr4nk/Ai-book-reports#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "langchain": "^0.0.214"
+  }
+}
