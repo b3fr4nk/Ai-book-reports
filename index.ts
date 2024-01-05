@@ -3,6 +3,7 @@ import "dotenv/config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import booksRouter from "./routes/books";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -11,6 +12,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
+
+// Database
+mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Database connected!");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // routes
 app.use("/api", [booksRouter]);
