@@ -1,7 +1,6 @@
 import { Date, Document, Model, Schema, model } from "mongoose";
 
 export interface IBookDocument extends Document {
-  vector_name: string;
   title: string;
   author: string;
   path: string;
@@ -15,11 +14,6 @@ interface IBookModel extends Model<IBookDocument, {}> {}
 
 // Book Schema
 const BookSchema = new Schema<IBook, IBookModel>({
-  vector_name: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   title: {
     type: String,
     required: true,
@@ -35,3 +29,7 @@ const BookSchema = new Schema<IBook, IBookModel>({
     unique: true,
   },
 });
+
+const Book = model<IBook>("Book", BookSchema);
+
+export default Book;
