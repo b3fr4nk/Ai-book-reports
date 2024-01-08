@@ -1,6 +1,27 @@
-import { createTable, openTable } from "../ai/vectors";
+import { createTable } from "../ai/vectors";
 import Book from "../../models/book";
+import Report from "../../models/report";
 import { Request, Response, NextFunction } from "express";
+import { createReport } from "../ai/report";
+
+const addReport = async (title: string, path: string, book: number) => {
+  await createTable(title, path);
+
+  const report = await createReport(title);
+
+  const fields = {
+    report,
+    title,
+    book,
+  };
+
+  const bookReport = new Report(fields);
+  await bookReport.save();
+
+  console.log(report);
+
+  return report;
+};
 
 // add book to databases
 export const addBook = async (
@@ -27,9 +48,11 @@ export const addBook = async (
       const book = new Book(fields);
       await book.save();
 
-      createTable(title, path);
+      addReport(title, path, book.id);
 
-      return res.status(200).json({ success: "true", book: `${title} added` });
+      return res
+        .status(200)
+        .json({ success: "true", book: `${book.id} added` });
     }
   } catch (err) {
     console.log(err);
