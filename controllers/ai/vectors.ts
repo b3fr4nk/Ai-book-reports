@@ -1,7 +1,7 @@
 import { LanceDB } from "langchain/vectorstores/lancedb";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { OllamaEmbeddings } from "langchain/embeddings/ollama";
-import { connect } from "vectordb";
+import { Table, connect } from "vectordb";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import os from "node:os";
@@ -21,7 +21,7 @@ const createDocs = async (doc: string) => {
 export const createTable = async (name: string, doc: string) => {
   const documents = await createDocs(doc);
 
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "lancedb-"));
+  const dir = "./lancedb";
   const db = await connect(dir);
 
   try {
@@ -36,25 +36,21 @@ export const createTable = async (name: string, doc: string) => {
 
     console.log("table created");
 
-    await LanceDB.fromDocuments(documents, new OllamaEmbeddings(), { table });
+    const vectorStore = await LanceDB.fromDocuments(
+      documents,
+      new OllamaEmbeddings(),
+      { table }
+    );
   } catch (err) {
     console.log(err);
   }
 };
 
-export const openTable = async (name: string) => {
-  try {
-    const dir = await path.join(os.tmpdir(), "lancedb-");
-    const db = await connect(dir);
+export const openTable = async (name: string): Promise<Table<number[]>> => {
+  const dir = "./lancedb";
+  const db = await connect(dir);
 
-    const table = await db.openTable(name);
+  const table = await db.openTable(name);
 
-    const vectorStore = await new LanceDB(new OllamaEmbeddings(), {
-      table,
-    });
-
-    return vectorStore;
-  } catch (err) {
-    console.log(err);
-  }
+  return table;
 };
