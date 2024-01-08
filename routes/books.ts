@@ -1,5 +1,5 @@
 import Express from "express";
-import { addBook, searchBook } from "../controllers/book/book";
+import { addBook, searchBook, getAllBooks } from "../controllers/book/book";
 
 import multer from "multer";
 
@@ -10,7 +10,7 @@ const router = Express.Router();
 router.use("/books", router);
 
 router.post("/new", upload.single("book"), addBook);
-
+router.get("", getAllBooks);
 router.post("/search", searchBook);
 
 export default router;

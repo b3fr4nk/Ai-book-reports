@@ -1,4 +1,4 @@
-import { Date, Document, Model, Schema, model } from "mongoose";
+import { Document, Model, Schema, model } from "mongoose";
 
 export interface IBookDocument extends Document {
   title: string;

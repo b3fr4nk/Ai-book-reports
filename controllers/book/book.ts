@@ -59,3 +59,18 @@ export const searchBook = async (
     next(err);
   }
 };
+
+export const getAllBooks = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const books = await Book.find();
+
+    return res.status(200).json({ books });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
