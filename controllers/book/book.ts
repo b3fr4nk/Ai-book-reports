@@ -27,10 +27,33 @@ export const addBook = async (
       const book = new Book(fields);
       await book.save();
 
-      await createTable(title, path);
+      createTable(title, path);
 
       return res.status(200).json({ success: "true", book: `${title} added` });
     }
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
+
+export const searchBook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { title, author } = req.body;
+
+    const book = await Book.findOne({ title: title, author: author });
+
+    if (!book) {
+      return res
+        .status(400)
+        .json({ message: `no book with title: ${title} and author ${author}` });
+    }
+
+    return res.status(200).json({ message: "found book", book });
   } catch (err) {
     console.log(err);
     next(err);
