@@ -16,17 +16,17 @@ export const createReport = async (title: string) => {
     table,
   });
 
-  const model = new Ollama({ model: "book-model" });
+  const model = new Ollama({ model: "llama2-uncensored" });
 
   const retriever = vectorStore.asRetriever();
 
   const prompt = PromptTemplate.fromTemplate(
-    "Create a book report from the following book {book}"
+    `The book's title is ${title}, please give me a full report on what happens in the book, who the characters are, and a couple quotes important quotes for each character. Here is the full book {context}`
   );
 
   const chain = RunnableSequence.from([
     {
-      book: retriever.pipe(formatDocumentsAsString),
+      context: retriever.pipe(formatDocumentsAsString),
       question: new RunnablePassthrough(),
     },
     prompt,
@@ -34,5 +34,7 @@ export const createReport = async (title: string) => {
     new StringOutputParser(),
   ]);
 
-  return await chain.invoke("create a book report");
+  return await chain.invoke(
+    `The book's title is ${title}, please give me a full report on what happens in the book, who the characters are, and a couple quotes important quotes for each character.`
+  );
 };

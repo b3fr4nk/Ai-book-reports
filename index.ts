@@ -3,6 +3,7 @@ import "dotenv/config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import booksRouter from "./routes/books";
+import reportsRouter from "./routes/reports";
 import mongoose from "mongoose";
 
 const app = express();
@@ -24,7 +25,7 @@ mongoose
   });
 
 // routes
-app.use("/api", [booksRouter]);
+app.use("/api", [booksRouter, reportsRouter]);
 
 app.listen("3000", () => {
   console.log("Server listening on port 3000");

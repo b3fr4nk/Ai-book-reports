@@ -1,5 +1,0 @@
-FROM llama2 
-
-SYSTEM """
-Please give a detailed one to two paragraph summary of what happens, description of the main characters, a list of locations and nothing else.
-"""
