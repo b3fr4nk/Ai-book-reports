@@ -83,6 +83,23 @@ export const searchBook = async (
   }
 };
 
+export const getBookById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { bookId } = req.params;
+
+    const book = await Book.findById(bookId);
+
+    return res.status(200).json({ book, message: `book ${bookId} found` });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
+
 export const getAllBooks = async (
   req: Request,
   res: Response,
