@@ -9,6 +9,7 @@ export const getReport = async (
 ) => {
   try {
     const { bookId } = req.params;
+    console.log(bookId);
 
     const report = await Report.findOne({ book: bookId });
 
@@ -26,6 +27,7 @@ export const getReport = async (
   }
 };
 
+// for tuning the model will not be used in production
 export const newReport = async (
   req: Request,
   res: Response,

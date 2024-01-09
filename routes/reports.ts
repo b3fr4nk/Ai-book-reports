@@ -5,7 +5,6 @@ const router = Express.Router();
 
 router.use("/reports", router);
 
-// router.get("/:title", getReport);
-router.get("/new", newReport);
+router.get("/:bookId", getReport);
 
 export default router;
