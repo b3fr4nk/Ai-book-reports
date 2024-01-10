@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    {{#each items}}
+      <div class="col-3">
+        <div class="card">
+          <img src="/images/book.jpg" alt="/images/book.jpg" />
+          <div class="card-title">
+            <h3>{{title}}</h3>
+          </div>
+          <div class="card-body">
+            <a href="/api/reports/{{_id}}" class="h3">Report</a>
+            <a href="/api/books/{{book}}">Full Book</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

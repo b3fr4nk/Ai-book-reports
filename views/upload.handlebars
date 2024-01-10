@@ -1,0 +1,42 @@
+<div class="container">
+  <form action="#" method="post" id="upload" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-4">
+        <div class="input-group mt-3">
+          <input
+            type="text"
+            ,
+            name="title"
+            id="title"
+            required="true"
+            placeholder="Title"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="input-group mt-3">
+          <input
+            type="text"
+            ,
+            name="author"
+            id="author"
+            required="true"
+            placeholder="Author"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="input-group mt-3">
+          <input class="form-control" type="file" name="book" id="fileUp" />
+          <button class="btn btn-primary">Upload</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="/js/upload.js"></script>

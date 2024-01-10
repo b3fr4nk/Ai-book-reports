@@ -14,9 +14,9 @@ const router = Express.Router();
 
 router.use("/books", router);
 
-router.post("/new", upload.single("book"), addBook);
-router.get("/", getAllBooks);
-router.get("/:bookId", getBookById);
-router.post("/search", searchBook);
+router.post("/books/new", upload.single("book"), addBook);
+router.get("/books/", getAllBooks);
+router.get("/books/:bookId", getBookById);
+router.post("/books/search", searchBook);
 
 export default router;

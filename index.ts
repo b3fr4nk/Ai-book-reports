@@ -4,11 +4,18 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import booksRouter from "./routes/books";
 import reportsRouter from "./routes/reports";
+import webClientRouter from "./routes/webClient";
 import mongoose from "mongoose";
+import { engine } from "express-handlebars";
+import path from "path";
 
 const app = express();
 
 // middleware
+app.engine("handlebars", engine());
+app.set("view engine", "handlebars");
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -25,6 +32,7 @@ mongoose
   });
 
 // routes
+app.use("/web", webClientRouter);
 app.use("/api", [booksRouter, reportsRouter]);
 
 app.listen("3000", () => {

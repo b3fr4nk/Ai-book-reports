@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Report from "../../models/report";
 import { createReport } from "../ai/report";
+import { paginate } from "../paginate";
 
 export const getReport = async (
   req: Request,
@@ -11,7 +12,7 @@ export const getReport = async (
     const { bookId } = req.params;
     console.log(bookId);
 
-    const report = await Report.findOne({ book: bookId });
+    const report = await Report.findById(bookId);
 
     if (!report) {
       return res.status(400).json("book report does not exist");
@@ -36,6 +37,24 @@ export const newReport = async (
   try {
     const report = await createReport("little brother2");
     res.json({ report });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
+
+export const getAllReports = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const currentPage = +req.params.page || 1;
+    let reports = await Report.find();
+
+    res
+      .status(200)
+      .json(paginate(reports, { currentPage: currentPage, itemsPerPage: 20 }));
   } catch (err) {
     console.log(err);
     next(err);
