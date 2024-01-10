@@ -6,5 +6,6 @@ const router = Express.Router();
 router.use("/reports", router);
 
 router.get("/:bookId", getReport);
+// router.get("/new", newReport);
 
 export default router;
