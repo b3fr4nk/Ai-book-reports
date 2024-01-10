@@ -32,6 +32,5 @@ export const browsePage = async (
   const response = await (
     await fetch("http://localhost:3000/api/reports")
   ).json();
-  console.log(await response);
   res.render("browse.handlebars", response);
 };
