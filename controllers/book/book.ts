@@ -66,14 +66,12 @@ export const searchBook = async (
   next: NextFunction
 ) => {
   try {
-    const { title, author } = req.body;
+    const { title } = req.body;
 
-    const book = await Book.findOne({ title: title, author: author });
+    const book = await Book.findOne({ title: title });
 
     if (!book) {
-      return res
-        .status(400)
-        .json({ message: `no book with title: ${title} and author ${author}` });
+      return res.status(400).json({ message: `no book with title: ${title}` });
     }
 
     return res.status(200).json({ message: "found book", book });
