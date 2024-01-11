@@ -34,3 +34,15 @@ export const browsePage = async (
   ).json();
   res.render("browse.handlebars", response);
 };
+
+export const reportPage = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const reportId = req.params.reportId;
+  const response = await (
+    await fetch(`http://localhost:3000/api/reports/${reportId}`)
+  ).json();
+  res.render("report.handlebars", response);
+};
