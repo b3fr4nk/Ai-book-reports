@@ -112,3 +112,20 @@ export const getAllBooks = async (
     next(err);
   }
 };
+
+export const deleteBook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await Book.findByIdAndDelete(req.params.bookId);
+
+    return res.status(200).json({
+      message: "Book deleted",
+    });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
