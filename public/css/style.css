@@ -1,0 +1,8 @@
+.report {
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  margin-top: 35px;
+  padding: 35px;
+  box-shadow: 2px 3px #393939;
+}
