@@ -3,6 +3,7 @@ import { Document, Model, Schema, model } from "mongoose";
 export interface IReportDocument extends Document {
   title: string;
   report: string;
+  dateCreated: Date;
   book: Schema.Types.ObjectId;
 }
 
@@ -21,6 +22,10 @@ const ReportSchema = new Schema<IReport, IReportModel>({
   report: {
     type: String,
     required: true,
+  },
+  dateCreated: {
+    type: Date,
+    default: null,
   },
   book: {
     type: Schema.Types.ObjectId,

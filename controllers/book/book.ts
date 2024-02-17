@@ -9,10 +9,13 @@ const addReport = async (title: string, path: string, book: number) => {
 
   const report = await createReport(title);
 
+  const dateCreated = await Date.now();
+
   const fields = {
     report,
     title,
     book,
+    dateCreated,
   };
 
   const bookReport = new Report(fields);
