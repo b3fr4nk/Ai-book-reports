@@ -1,4 +1,4 @@
-# AI powered book report/book summaries
+# AI powered REST API for book report/book summaries
 
 Using a local Llamma2 model running on Ollama and Langchain.
 
