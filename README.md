@@ -7,3 +7,5 @@ Utilizing both a traditional non-sql database and a vector database AI book repo
 
 ## Retrieval Augmented Generation
 By adding custom data to the LLM AI Book Reports is able to create more accurate book reports more consistently.
+
+### Please note this project is not live because it does not work well on free hosting services if you are a recruiter and would like a demo please send me a message
